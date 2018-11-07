@@ -3,9 +3,6 @@ package com.example.franmay.listview;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Jugador implements Parcelable {
 
     int foto;
@@ -16,8 +13,6 @@ public class Jugador implements Parcelable {
     String posicion;
     int indicePosicion;
     int edad;
-    int radio;
-    boolean cajas[] = new boolean[5];
 
 
     public Jugador()
@@ -30,13 +25,11 @@ public class Jugador implements Parcelable {
         posicion = "";
         indicePosicion = 0;
         this.edad = 0;
-        this.radio=0;
-        Arrays.fill(cajas, Boolean.FALSE);
     }
 
 
     public Jugador(int foto, String nombre, String equipo, String pais, int indiceEquipo, String posicion,
-                   int indicePosicion, int edad, int radio, boolean[] cajas)
+                   int indicePosicion, int edad)
     {
         this.foto = foto;
         this.nombre = nombre;
@@ -46,8 +39,6 @@ public class Jugador implements Parcelable {
         this.posicion = posicion;
         this.indicePosicion = indicePosicion;
         this.edad = edad;
-        this.radio=radio;
-        this.cajas = cajas;
     }
 
     protected Jugador(Parcel in) {
@@ -59,8 +50,6 @@ public class Jugador implements Parcelable {
         posicion = in.readString();
         indicePosicion = in.readInt();
         edad = in.readInt();
-        radio = in.readInt();
-        cajas = in.createBooleanArray();
     }
 
     public static final Creator<Jugador> CREATOR = new Creator<Jugador>() {
@@ -107,14 +96,6 @@ public class Jugador implements Parcelable {
         return edad;
     }
 
-    public int getRadio() {
-        return radio;
-    }
-
-    public boolean[] getCajas() {
-        return cajas;
-    }
-
 
     public void setFoto(int foto) {
         this.foto = foto;
@@ -148,14 +129,6 @@ public class Jugador implements Parcelable {
         this.edad = edad;
     }
 
-    public void setRadio(int radio) {
-        this.radio = radio;
-    }
-
-    public void setCajas(boolean[] cajas) {
-            this.cajas = cajas;
-    }
-
 
     @Override
     public int describeContents() {
@@ -172,7 +145,5 @@ public class Jugador implements Parcelable {
         dest.writeString(posicion);
         dest.writeInt(indicePosicion);
         dest.writeInt(edad);
-        dest.writeInt(radio);
-        dest.writeBooleanArray(cajas);
     }
 }
